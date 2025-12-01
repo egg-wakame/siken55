@@ -236,19 +236,6 @@
   border-radius: 8px;
 }
 
-/* モバイル調整：狭い領域ではサムネを少し小さくして行間を詰める */
-@media (max-width: 520px) {
-  .video-right .recomeention > a .thumbnail {
-    width: 96px;
-    flex: 0 0 96px;
-    height: 54px;
-  }
-  .video-right .recomeention > a p {
-    font-size: 0.92rem;
-    -webkit-line-clamp: 2;
-  }
-}
-
 /* 既存の .thumbnail 全体に影響する過剰指定をリセット（副作用を避けるため限定的に） */
 .video-right .recomeention > a .thumbnail,
 .video-right .recomeention > a .thumbnail * {
@@ -555,11 +542,10 @@
             </div>
           </div>
           <!-- 右カラム：関連動画 -->
-          <!-- 右カラム：関連動画 -->
           <div class="video-right">
             {% for rec_video in recommended_videos %}
             <div class="recomeention">
-              <a href="/watch?v={{ rec_video['video_id'] }}">
+              <a href="/ume?v={{ rec_video['video_id'] }}">
                 <div class="thumbnail">
                   <img loading="lazy" class="thumbnail" src="{% if proxy == 'True' %}/thumbnail?v={{ rec_video['video_id'] }}{% else %}https://img.youtube.com/vi/{{ rec_video['video_id'] }}/0.jpg{% endif %}" alt="{{ rec_video['title'] }}">
                   <span class="length">{{ rec_video["length_text"] }}</span>
